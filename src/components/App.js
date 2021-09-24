@@ -16,13 +16,13 @@ class App extends React.Component {
     this.templates = {
       promotion: {
         subject: "Natwest cuts Mortgage rates for X-Mas season",
-        text: `Dear,\nOne of the UK's leading bank announced on Friday that it is cutting the mortgage load rates for upcoming festival season.`
+        text: `Dear,\nOne of the UK's leading bank announced on Friday that it is cutting the mortgage load rates for upcoming festival season.\n\n\nRegards,\nNatwest Team`
       },
       congrats: {
         subject: "Congratulations on Your Promotion",
         text: `Dear,\nCongratulations on your promotion. I heard about well deserved promotion through linkedin.\nWe would also like to share a few options with you to earn on your additional savings:\n
           Flexi account with 5% interest rate*\n
-          Platinum account with loads of benefits like travel and mobile insurance*\n\n*T&C apply.
+          Platinum account with loads of benefits like travel and mobile insurance*\n\n\nRegards,\nNatwest Team\n\n\n*T&C apply.
           `
       }
     }
@@ -66,7 +66,7 @@ class App extends React.Component {
 
   renderTable = () => {
 
-    const rows = this.state.customers.map(customer => ({ name: customer.name, position: customer.title, email: customer.email }));
+    const rows = this.state.customers.map(customer => ({ name: customer.name, position: customer.title, location: customer.city, email: customer.email }));
     const data = {
       columns: [
         {
@@ -77,6 +77,11 @@ class App extends React.Component {
         }, {
           label: "Position",
           field: "position",
+          sort: "asc",
+          width: 150
+        }, {
+          label: "Location",
+          field: "location",
           sort: "asc",
           width: 150
         }], rows: rows
@@ -121,7 +126,7 @@ class App extends React.Component {
               <div className="col-5" style={{ display: 'inline-flex' }}>
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" style={{ 'borderColor': 'rebeccapurple' }} type="radio" name="radioInline" id="promotion" onChange={this.selectTemplate} />
-                  <label className="form-check-label" htmlFor="promotion">Promotion</label>
+                  <label className="form-check-label" htmlFor="promotion">Offers</label>
                 </div>
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" style={{ 'borderColor': 'rebeccapurple' }} type="radio" name="radioInline" id="congrats" onChange={this.selectTemplate} />
